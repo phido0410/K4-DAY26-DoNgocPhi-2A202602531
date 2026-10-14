@@ -9,10 +9,17 @@ Cách chạy:
     python weather_function_calling.py
 """
 
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-client = genai.Client()
+load_dotenv()
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+
+api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+client = genai.Client(api_key=api_key) if api_key else genai.Client()
 
 MODEL = "gemini-2.5-flash"
 
