@@ -6,6 +6,13 @@ from google.adk import Agent
 from google.adk.tools.mcp_tool.mcp_toolset import McpToolset, StreamableHTTPConnectionParams
 import logging
 import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Nạp file .env từ thư mục hiện tại hoặc thư mục mcp-client hoặc root
+load_dotenv()
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+load_dotenv(Path(__file__).resolve().parent.parent.parent / ".env")
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
